@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moneyappsqllite/data/db/db_helper.dart';
+import 'package:moneyappsqllite/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper().database;
   runApp(const MyApp());
 }
 
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(),
     );
   }
 }
