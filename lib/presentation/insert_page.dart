@@ -19,6 +19,7 @@ class _InsertPageState extends State<InsertPage> {
     'Belanja',
     'Lainnya',
   ];
+
   final _formKey = GlobalKey<FormState>();
   final _categoryCtr = TextEditingController();
   final _descCtr = TextEditingController();
@@ -27,6 +28,7 @@ class _InsertPageState extends State<InsertPage> {
   DateTime _selectDate = DateTime.now();
   final _dao = TransactionDao();
 
+  @override
   void dispose() {
     _categoryCtr.dispose();
     _descCtr.dispose();
@@ -67,6 +69,7 @@ class _InsertPageState extends State<InsertPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _formKey,
           child: ListView(
             children: [
               DropdownButtonFormField<String>(

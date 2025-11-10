@@ -8,6 +8,7 @@ class Transaction {
   final String description;
   final double amount;
   final String date;
+
   Transaction({
     this.id,
     required this.type,

@@ -1,9 +1,10 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:moneyappsqllite/data/model/transaction.dart';
 import 'package:moneyappsqllite/data/repository/transaction_repository.dart';
-import 'package:moneyappsqllite/insert_page.dart';
+import 'package:moneyappsqllite/presentation/insert_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +21,14 @@ class _HomepageState extends State<HomePage> {
   List<Transaction> _transaction = [];
 
   @override
+  void initState() {
+    super.initState();
+    _getAllTransactions();
+    _loadBalance();
+    _loadIncome();
+    _loadExpense();
+  }
+
   void _getAllTransactions() async {
     try {
       final txs = await _repo.getAllTransaction();
@@ -56,6 +65,7 @@ class _HomepageState extends State<HomePage> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -132,6 +142,7 @@ class _HomepageState extends State<HomePage> {
                         ),
 
                         SizedBox(width: 16.0),
+
                         Expanded(
                           child: Container(
                             margin: EdgeInsets.only(top: 16.0),
@@ -152,7 +163,7 @@ class _HomepageState extends State<HomePage> {
                                 ),
                                 SizedBox(height: 4.0),
                                 Text(
-                                  _income == null
+                                  _expense == null
                                       ? "Rp0.0"
                                       : "Rp${_expense!.toStringAsFixed(2)}",
                                   style: TextStyle(
@@ -189,14 +200,14 @@ class _HomepageState extends State<HomePage> {
                         tx.type == 'income' ? 'Income' : 'Expense',
                         style: TextStyle(
                           color: tx.type == 'income'
-                            ? Colors.green
-                            : Colors.red,
+                              ? Colors.green
+                              : Colors.red,
                         ),
                       ),
                       leading: Icon(
                         tx.type == 'income'
-                          ? Icons.arrow_circle_up
-                          : Icons.arrow_circle_down,
+                            ? Icons.arrow_circle_up
+                            : Icons.arrow_circle_down,
                         color: tx.type == 'income' ? Colors.green : Colors.red,
                       ),
 
@@ -205,21 +216,22 @@ class _HomepageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 16,
                           color: tx.type == 'income'
-                          ? Colors.green
-                          : Colors.red,
+                              ? Colors.green
+                              : Colors.red,
                         ),
                       ),
                     );
-                  }
-                ), 
-              )
+                  },
+                ),
+              ),
             ],
           ),
         ),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          // Navigate to insert page
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const InsertPage()),

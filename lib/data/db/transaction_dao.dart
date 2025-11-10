@@ -14,6 +14,7 @@ class TransactionDao {
   Future<List<Transaction>> getAllTransaction() async {
     final db = await dbHelper.database;
     final result = await db.query('transactions');
+
     for (var map in result) {
       log('Transaction from DB: ${Transaction.fromMap(map).toJson()}');
     }

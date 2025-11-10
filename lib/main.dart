@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneyappsqllite/data/db/db_helper.dart';
-import 'package:moneyappsqllite/home_page.dart';
+import 'package:moneyappsqllite/presentation/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
