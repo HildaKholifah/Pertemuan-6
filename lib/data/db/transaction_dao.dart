@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:moneyappsqllite/data/db/db_helper.dart';
 import 'package:moneyappsqllite/data/model/transaction.dart';
 
-class TransactionDao {
+class TransactionDAO {
   final dbHelper = DbHelper();
 
   Future<int> insertTransaction(Transaction transaction) async {
@@ -33,10 +33,10 @@ class TransactionDao {
   Future<double> getExpense() async {
     final db = await dbHelper.database;
     final expenseResult = await db.rawQuery(
-      'SELECT SUM(amount) as total_expense FROM transactions WHERE TYPE = ?',
+      'SELECT SUM(amount) as total_expense FROM transactions WHERE type = ?',
       ['expense'],
     );
-    return (expenseResult.first['total_expence'] as num?)?.toDouble() ?? 0.0;
+    return (expenseResult.first['total_expense'] as num?)?.toDouble() ?? 0.0;
   }
 
   Future<double> getBalance() async {

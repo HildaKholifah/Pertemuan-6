@@ -2,7 +2,7 @@ import 'package:moneyappsqllite/data/db/transaction_dao.dart';
 import 'package:moneyappsqllite/data/model/transaction.dart';
 
 class TransactionRepository {
-  final transactionDao = TransactionDao();
+  final transactionDao = TransactionDAO();
 
   Future<int> insertTransaction(Transaction transaction) async {
     return await transactionDao.insertTransaction(transaction);

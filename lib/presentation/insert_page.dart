@@ -26,7 +26,7 @@ class _InsertPageState extends State<InsertPage> {
   final _amountCtr = TextEditingController();
   String _type = 'income';
   DateTime _selectDate = DateTime.now();
-  final _dao = TransactionDao();
+  final _dao = TransactionDAO();
 
   @override
   void dispose() {

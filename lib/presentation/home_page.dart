@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:moneyappsqllite/data/model/transaction.dart';
@@ -32,7 +31,10 @@ class _HomepageState extends State<HomePage> {
   void _getAllTransactions() async {
     try {
       final txs = await _repo.getAllTransaction();
-      setState(() => _transaction = txs);
+      // setState(() => _transaction = txs);
+      setState(() {
+        _transaction = txs;
+      });
     } catch (e) {
       debugPrint('Failed to load transaction: $e');
     }
@@ -41,7 +43,10 @@ class _HomepageState extends State<HomePage> {
   void _loadBalance() async {
     try {
       final b = await _repo.getBalance();
-      setState(() => _balance = b);
+      // setState(() => _balance = b);
+      setState(() {
+        _balance = b;
+      });
     } catch (e) {
       log('Gagal mengambil balance: $e');
     }
@@ -50,7 +55,10 @@ class _HomepageState extends State<HomePage> {
   void _loadIncome() async {
     try {
       final i = await _repo.getIncome();
-      setState(() => _income = i);
+      // setState(() => _income = i);
+      setState(() {
+        _income = i;
+      });
     } catch (e) {
       log('Gagal mengambil income: $e');
     }
@@ -59,7 +67,10 @@ class _HomepageState extends State<HomePage> {
   void _loadExpense() async {
     try {
       final e = await _repo.getExpense();
-      setState(() => _income = e);
+      // setState(() => _expense = e);
+      setState(() {
+        _expense = e;
+      });
     } catch (e) {
       log('Gagal mengambil expense: $e');
     }
